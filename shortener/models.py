@@ -1,10 +1,15 @@
 from django.db import models
+from django.conf import settings
 
 from .utils import code_generator, create_shortcode
 # Create your models here.
 
+SHORTCODE_MAX =  getattr(settings, "SHORTCODE_MAX", 15)
+
 class URLManager(models.Manager):
     """docstring for URLManager."""
+    def get_queryset(self):
+        return super().get_queryset().filter(active = False)
     def all(self, *args,**kwargs):
         qs = super(URLManager, self).all(*args, **kwargs).filter(active = False)
         return qs
@@ -24,12 +29,12 @@ class URLManager(models.Manager):
 class URL(models.Model):
     """docstring for ."""
     url = models.CharField(max_length = 220, )
-    shortcode = models.CharField(max_length = 15, unique = True, blank = True)
+    shortcode = models.CharField(max_length = SHORTCODE_MAX, unique = True, blank = True)
     update = models.DateTimeField(auto_now = True)
     timestamp = models.DateTimeField(auto_now_add = True)
     active = models.BooleanField(default = True)
-    objects = URLManager()
-
+    objects = models.Manager()
+    custom = URLManager()
     def save(self, *args, **kwargs):
         if self.shortcode is None or self.shortcode == "":
             self.shortcode = create_shortcode(self)
