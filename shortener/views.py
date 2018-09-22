@@ -18,10 +18,20 @@ class HomeView(View):
 
     def post(self, request, *args, **kwargs ):
         form = SubmitUrlForm(request.POST)
-        if form.is_valid():
-            print(form.cleaned_data.get("url"))
         context = {"form" : form}
-        return render(request, "shortener/Home.html", context)
+        template = "shortener/Home.html"
+        if form.is_valid():
+            new_url = form.cleaned_data.get("url")
+            obj, created = URL.objects.get_or_create(url = new_url)
+            context = {
+                "object": obj,
+                "created": created,
+            }
+            if created:
+                template = "shortener/success.html"
+            else:
+                template = "shortener/already.html"
+        return render(request, template, context)
 
 class RedirectView(View):
     def get(self, request, shortcode = None, *args, **kwargs):
