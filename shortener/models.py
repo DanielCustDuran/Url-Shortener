@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 
 from .utils import code_generator, create_shortcode
+from .validators import validate_url, validate_dot_com
+
 # Create your models here.
 
 SHORTCODE_MAX =  getattr(settings, "SHORTCODE_MAX", 15)
@@ -28,7 +30,7 @@ class URLManager(models.Manager):
 
 class URL(models.Model):
     """docstring for ."""
-    url = models.CharField(max_length = 220, )
+    url = models.CharField(max_length = 220, validators = [validate_url, validate_dot_com])
     shortcode = models.CharField(max_length = SHORTCODE_MAX, unique = True, blank = True)
     update = models.DateTimeField(auto_now = True)
     timestamp = models.DateTimeField(auto_now_add = True)
