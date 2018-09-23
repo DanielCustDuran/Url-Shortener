@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
 
 from .utils import code_generator, create_shortcode
 from .validators import validate_url, validate_dot_com
@@ -44,3 +45,8 @@ class URL(models.Model):
 
     def __str__(self):
         return str(self.url)
+
+    def get_short_url(self):
+        url_path = reverse("scode", kwargs = { 'shortcode': self.shortcode}, host = 'www')
+        #url_path = '127.0.0.1:8000' + url_path
+        return url_path

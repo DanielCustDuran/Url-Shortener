@@ -25,7 +25,7 @@ SECRET_KEY = '7&%ic78u%seq!-n0+h#axa$964orl#85pb$3n@+3w_((q8&$b6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shortener',
+    # third-party libraries
+    'django_hosts',
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,9 +51,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'urlshortener.urls'
+ROOT_HOSTCONF = 'urlshortener.hosts'
+DEFAULT_HOST = 'www'
+DEFAULT_REDIRECT_PATH = 'http://www.urlshortener.com:8000'
 
 TEMPLATES = [
     {
