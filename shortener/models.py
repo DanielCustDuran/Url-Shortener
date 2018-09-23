@@ -47,6 +47,6 @@ class URL(models.Model):
         return str(self.url)
 
     def get_short_url(self):
-        url_path = reverse("scode", kwargs = { 'shortcode': self.shortcode}, host = 'www')
-        #url_path = '127.0.0.1:8000' + url_path
+        url_path = reverse("scode", kwargs = { 'shortcode': self.shortcode})
+        url_path = '127.0.0.1:8000' + url_path
         return url_path
