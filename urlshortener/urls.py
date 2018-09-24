@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from shortener.views import  RedirectView, HomeView
+from shortener.views import  URLRedirectView, HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view()),
-    path('b/<slug:shortcode>/', RedirectView.as_view(), name = 'scode'),
+    path('b/<slug:shortcode>/', URLRedirectView.as_view(), name = 'scode'),
 ]
