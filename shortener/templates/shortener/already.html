@@ -1,3 +1,26 @@
-<h1>already exists!</h1>
-<p>{{ object.url }}</p>
-<p>{{ object.get_short_url }}</p>
+{% extends 'shortener/base.html' %}
+{% block main_content%}
+<div class="row">
+    <div class="col s12 m6">
+        <div class="card">
+            <div class="card-image">
+                <img width="300" height="450"
+                    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/2e7bddfe-7e31-4d54-8041-eb200798cb91/d4re0jh-c61071d7-a3cc-4f19-acb5-158c6d92a95e.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzJlN2JkZGZlLTdlMzEtNGQ1NC04MDQxLWViMjAwNzk4Y2I5MVwvZDRyZTBqaC1jNjEwNzFkNy1hM2NjLTRmMTktYWNiNS0xNThjNmQ5MmE5NWUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.6M3fhBhhpvYCCy2ZiZDRs20YtIgLUg3vpfsqByCOrz8">
+            </div>
+            <div class="card-content">
+                <p>Well,There is a short link with the url, here your old and new link!</p>
+            </div>
+        </div>
+    </div>
+    <div class="col s12 m6">
+        <br>
+        <label class=""> Old Link <p><strong>
+                    {{ object.url }}
+                </strong>
+            </p></label>
+        <br>
+        <br>
+        <label> New link <p><strong>{{ object.get_short_url }}</strong></p></label>
+    </div>
+</div>
+{% endblock main_content %}

@@ -38,9 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shortener',
-    'analytics',
     # third-party libraries
-    #'django_hosts',
+    'django_hosts',
 ]
 
 MIDDLEWARE = [

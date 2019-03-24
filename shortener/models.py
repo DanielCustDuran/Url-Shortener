@@ -11,8 +11,10 @@ SHORTCODE_MAX =  getattr(settings, "SHORTCODE_MAX", 15)
 
 class URLManager(models.Manager):
     """docstring for URLManager."""
+
     def get_queryset(self):
         return super().get_queryset().filter(active = False)
+
     def all(self, *args,**kwargs):
         qs = super(URLManager, self).all(*args, **kwargs).filter(active = False)
         return qs
@@ -38,6 +40,7 @@ class URL(models.Model):
     active = models.BooleanField(default = True)
     objects = models.Manager()
     custom = URLManager()
+
     def save(self, *args, **kwargs):
         if self.shortcode is None or self.shortcode == "":
             self.shortcode = create_shortcode(self)

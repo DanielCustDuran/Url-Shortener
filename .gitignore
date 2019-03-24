@@ -1,0 +1,26 @@
+# OS generated files
+.DS_Store
+.Trashes
+Thumbs.db
+
+# Python Bytecode Files
+*.pyc
+
+# DIRECTORIES
+media/*
+static/*
+.vscode/*
+usenv/*
+
+
+# Configuration
+urlshortener/settings.py
+
+# Migrations
+analitics/migrations/*
+shortener/migrations/*
+
+# Database SQLite
+db.sqlite3
+
+

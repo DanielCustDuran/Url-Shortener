@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from django.views import View
 from django.shortcuts import get_object_or_404
 
-from analytics.models import ClickEvent
+from django.views import View
+
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .forms import SubmitUrlForm
 from .models import URL
@@ -38,5 +38,4 @@ class HomeView(View):
 class URLRedirectView(View):
     def get(self, request, shortcode = None, *args, **kwargs):
         obj = get_object_or_404(URL, shortcode = shortcode)
-        print(ClickEvent.objects.create_event(obj))
         return HttpResponseRedirect(obj.url)

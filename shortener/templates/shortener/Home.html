@@ -1,7 +1,31 @@
-<div style='width: 800px; margin: 0 auto;'>
-  <h1>Hi</h1>
-  <form class="" action="." method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="" value="Short">
+{% extends 'shortener/base.html' %}
+{% block main_content%}
+<div class="center">
+
+  <form class="" action="" method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col s12 m6">
+        <div class="card blue darken-1">
+          <div class="card-content black-text">
+            <span class="card-title">How to generate a short url?</span>
+            <ul class="collection" id="collection_steps">
+              <li class="collection-item active">1. Introduce an url to cut out it!</li>
+              <li class="collection-item">Click on button "Cogs"</li>
+              <li class="collection-item">Got it!</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="input-field col m6 s12">
+        <i class="fa fa-link prefix"></i>
+        {{form.url}}
+        <button class="right btn-floating btn-large waves-effect waves-light  blue" type="submit" name="action">
+          <i class="fa fa-cogs right"></i>
+        </button>
+        <!-- <input type="submit" name="" value="CUT"> -->
+      </div>
+    </div>
   </form>
 </div>
+{% endblock main_content %}
